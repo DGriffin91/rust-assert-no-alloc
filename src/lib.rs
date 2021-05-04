@@ -163,7 +163,7 @@ impl AllocDisabler {
         let permit_count = ALLOC_PERMIT_COUNT.with(|p| p.get());
         if forbid_count > 0 && permit_count == 0 {
             // we may not use println! here, as it will stall when unwinding from a panic.
-            ALLOC_PERMIT_COUNT.with(|c| c.set(c.get() + 1));
+            ALLOC_PERMIT_COUNT.with(|c| c.set(c.get() + 100));
 
             #[cfg(any(
                 all(feature = "warn_debug", debug_assertions),
